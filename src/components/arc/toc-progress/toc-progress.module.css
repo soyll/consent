@@ -1,0 +1,155 @@
+.root {
+  --toc-accent: var(--foreground);
+  display: grid;
+  min-width: 0;
+  gap: 10px;
+  color: var(--foreground);
+  font-size: 0.875rem;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+
+.head {
+  display: flex;
+  min-width: 0;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-left: 2px;
+}
+
+.title {
+  margin: 0;
+  color: var(--foreground);
+  font-weight: 500;
+}
+
+.time {
+  display: inline-grid;
+  flex: 0 0 auto;
+  justify-items: end;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.time[data-done] {
+  color: color-mix(in oklab, var(--muted-foreground) 70%, var(--foreground));
+}
+
+.timeText {
+  display: inline-flex;
+  grid-area: 1 / 1;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.timeText > svg {
+  align-self: center;
+  width: 14px;
+  height: 14px;
+  color: oklch(0.72 0.14 162);
+  stroke-width: 2;
+}
+
+.body {
+  position: relative;
+  min-width: 0;
+}
+
+.line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.track,
+.progress {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+
+.track {
+  stroke: color-mix(in oklab, var(--border) 60%, var(--muted-foreground));
+}
+
+:global(.dark) .track {
+  stroke: color-mix(in oklab, var(--border) 80%, var(--muted-foreground));
+}
+
+.progress {
+  stroke: var(--toc-accent);
+  stroke-width: 2;
+}
+
+.markerDot {
+  fill: var(--toc-accent);
+}
+
+.list {
+  position: relative;
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: flex;
+  min-width: 0;
+}
+
+.link {
+  display: block;
+  min-width: 0;
+  flex: 1 1 0%;
+  padding: 4px 8px 4px 22px;
+  border-radius: 10px;
+  color: var(--muted-foreground);
+  text-decoration: none;
+  text-wrap: pretty;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    color 0.24s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.16s cubic-bezier(0.22, 1, 0.36, 1);
+  outline: none;
+}
+
+.row[data-level="2"] .link {
+  padding-left: 34px;
+}
+
+.row[data-level="3"] .link {
+  padding-left: 46px;
+}
+
+.row[data-state="read"] .link {
+  color: color-mix(in oklab, var(--muted-foreground) 55%, var(--foreground));
+}
+
+.row[data-state="current"] .link {
+  color: var(--foreground);
+}
+
+.link:focus-visible {
+  background: color-mix(in oklab, var(--foreground) 4.5%, transparent);
+  color: var(--foreground);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--ring) 50%, transparent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link:hover {
+    color: var(--foreground);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link {
+    transition: none;
+  }
+}
