@@ -3,6 +3,7 @@ import { socials } from "@/data/socials";
 import { useTheme } from "next-themes";
 import { ArrowUpRight } from "lucide-react";
 import { outboundHref } from "@/lib/outbound";
+import { asset } from "@/lib/asset";
 
 const ContactSection = () => {
   const { resolvedTheme } = useTheme();
@@ -36,11 +37,11 @@ const ContactSection = () => {
               >
                 <div className="flex items-center gap-4">
                   <img
-                    src={
+                    src={asset(
                       resolvedTheme === "dark" && social.darkIcon
                         ? social.darkIcon
-                        : social.icon
-                    }
+                        : social.icon,
+                    )}
                     alt={social.name}
                     className="h-6 w-6 rounded-sm object-contain"
                   />
